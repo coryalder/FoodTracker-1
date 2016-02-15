@@ -156,7 +156,52 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BT4-1r-jf8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-424" y="296"/>
+            <point key="canvasLocation" x="-988" y="296"/>
+        </scene>
+        <!--Login Signup View Controller-->
+        <scene sceneID="7su-c6-MiS">
+            <objects>
+                <viewController id="Rem-AR-j8w" customClass="LoginSignupViewController" customModule="FoodTracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="REu-2p-hd4"/>
+                        <viewControllerLayoutGuide type="bottom" id="pQ8-c3-wIt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Nzy-D5-LYg">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hgt-8f-uMv">
+                                <rect key="frame" x="252" y="185" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MMT-SV-yVr">
+                                <rect key="frame" x="180" y="49" width="240" height="128"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="sFD-Gi-q3x" appends="YES" id="kmP-8U-elJ"/>
+                                </connections>
+                            </imageView>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JQv-34-WSM">
+                                <rect key="frame" x="0.0" y="256" width="600" height="216"/>
+                            </pickerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="imageToUpload" destination="MMT-SV-yVr" id="Qgo-r3-JuD"/>
+                        <outlet property="userTypePickerView" destination="JQv-34-WSM" id="lGc-JE-4Dl"/>
+                        <outlet property="usernameTextField" destination="hgt-8f-uMv" id="F5B-6c-plf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qOB-ry-b6n" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="sFD-Gi-q3x">
+                    <connections>
+                        <action selector="selectImageFromLibrary:" destination="Rem-AR-j8w" id="fOi-bL-BSm"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="-310" y="699"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="DhU-sP-W4o">
