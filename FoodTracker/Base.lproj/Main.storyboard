@@ -175,6 +175,9 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JQv-34-WSM">
+                                <rect key="frame" x="0.0" y="256" width="600" height="216"/>
+                            </pickerView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MMT-SV-yVr">
                                 <rect key="frame" x="180" y="49" width="240" height="128"/>
                                 <gestureRecognizers/>
@@ -182,9 +185,6 @@
                                     <outletCollection property="gestureRecognizers" destination="sFD-Gi-q3x" appends="YES" id="kmP-8U-elJ"/>
                                 </connections>
                             </imageView>
-                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JQv-34-WSM">
-                                <rect key="frame" x="0.0" y="256" width="600" height="216"/>
-                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
