@@ -29,7 +29,20 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         if let meal = meal {
             navigationItem.title = meal.name
             nameTextField.text   = meal.name
-            photoImageView.image = meal.photo
+            
+            
+            if let photoFile = meal.photo {
+                
+                photoFile.getDataInBackgroundWithBlock {
+                    maybeData, error in
+                    
+                    if let data = maybeData {
+                        self.photoImageView.image = UIImage(data: data)
+                    }
+                }
+                
+            }
+            
             ratingControl.rating = meal.rating
         }
         
@@ -92,12 +105,40 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         }
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if saveButton === sender {
+        if let photo = photoImageView.image,
+           let imageData = UIImageJPEGRepresentation(photo, 0.5)
+            where saveButton === sender {
+                
             let name = nameTextField.text ?? ""
-            let photo = photoImageView.image
             let rating = ratingControl.rating
             
-            meal = Meal(name: name, photo: photo, rating: rating)
+            meal = Meal()
+            meal?.name = name
+            
+            
+            
+            let file = PFFile(data: imageData)
+            
+            meal?.photo = file
+            meal?.rating = rating
+                
+                // send a push/
+                
+                if let type = PFUser.currentUser()?["userType"] as? String where type == "Food Critic" {
+                    
+                    let push = PFPush()
+                    
+                    push.setData(["title" : "new food!", "alert" : "there is new food available!"])
+                    
+//                    push.setQuery(<#T##query: PFQuery?##PFQuery?#>)
+                    
+                    do {
+                        try push.sendPush()
+                    } catch {
+                        print("oops push failed \(error)")
+                    }
+                    
+                }
         }
     }
     

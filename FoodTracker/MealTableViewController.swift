@@ -44,16 +44,16 @@ class MealTableViewController: UITableViewController {
     }
     
     func loadSampleMeals() {
-        let photo1 = UIImage(named: "meal1")!
-        let meal1 = Meal(name: "Caprese Salad", photo: photo1, rating: 4)!
-        
-        let photo2 = UIImage(named: "meal2")!
-        let meal2 = Meal(name: "Chicken and Potatoes", photo: photo2, rating: 5)!
-        
-        let photo3 = UIImage(named: "meal3")!
-        let meal3 = Meal(name: "Pasta with Meatballs", photo: photo3, rating: 3)!
-        
-        meals += [meal1, meal2, meal3]
+//        let photo1 = UIImage(named: "meal1")!
+//        let meal1 = Meal(name: "Caprese Salad", photo: photo1, rating: 4)!
+//        
+//        let photo2 = UIImage(named: "meal2")!
+//        let meal2 = Meal(name: "Chicken and Potatoes", photo: photo2, rating: 5)!
+//        
+//        let photo3 = UIImage(named: "meal3")!
+//        let meal3 = Meal(name: "Pasta with Meatballs", photo: photo3, rating: 3)!
+//        
+//        meals += [meal1, meal2, meal3]
         
     }
 
@@ -80,7 +80,18 @@ class MealTableViewController: UITableViewController {
         let meal = meals[indexPath.row]
         
         cell.nameLabel.text = meal.name
-        cell.photoImageView.image = meal.photo
+        
+        if let photoFile = meal.photo {
+            photoFile.getDataInBackgroundWithBlock {
+                maybeData, error in
+                
+                if let data = maybeData {
+                    let laterCell = self.tableView.cellForRowAtIndexPath(indexPath) as? MealTableViewCell
+                    laterCell?.photoImageView.image = UIImage(data: data)
+                }
+            }
+        }
+        
         cell.ratingControl.rating = meal.rating
 
         return cell
@@ -167,14 +178,37 @@ class MealTableViewController: UITableViewController {
     
     func saveMeals() {
         
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(meals, toFile: Meal.ArchiveURL.path!)
-        
-        if !isSuccessfulSave {
-            print("Failed to save meals...")
+        for meal in meals {
+            meal.saveInBackground()
         }
+        
+//        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(meals, toFile: Meal.ArchiveURL.path!)
+//        
+//        if !isSuccessfulSave {
+//            print("Failed to save meals...")
+//        }
     }
     
     func loadMeals() -> [Meal]? {
+        
+        let query = PFQuery(className: "Meal")
+        
+        query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
+            
+            if let meals = objects as? [Meal] {
+                
+                self.meals = meals
+                
+                self.tableView.reloadData()
+                
+            } else {
+                print("error fetching meals \(error)")
+            }
+            
+            
+            
+        }
+        
         return NSKeyedUnarchiver.unarchiveObjectWithFile(Meal.ArchiveURL.path!) as? [Meal]
     }
     
