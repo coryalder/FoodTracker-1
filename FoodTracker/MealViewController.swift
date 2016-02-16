@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -110,5 +111,11 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         presentViewController(imagePickerController, animated: true, completion: nil)
 
     }
+    
+    @IBAction func logoutPressed(sender: UIButton) {
+        
+        PFUser.logOut()
+    }
+    
 
 }

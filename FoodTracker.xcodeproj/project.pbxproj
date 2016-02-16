@@ -21,6 +21,8 @@
 		A6CD38FB1C7220D800AF9807 /* MealTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6CD38FA1C7220D800AF9807 /* MealTableViewController.swift */; };
 		A6CD38FD1C72620300AF9807 /* LoginSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6CD38FC1C72620300AF9807 /* LoginSignupViewController.swift */; };
 		A6CD39031C727BAC00AF9807 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6CD39021C727BAC00AF9807 /* APIKeys.swift */; };
+		A6CD39071C72B0E300AF9807 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6CD39061C72B0E300AF9807 /* ProfileViewController.swift */; };
+		A6CD390D1C72B7F200AF9807 /* PushNotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6CD390C1C72B7F200AF9807 /* PushNotificationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,8 @@
 		A6CD38FA1C7220D800AF9807 /* MealTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealTableViewController.swift; sourceTree = "<group>"; };
 		A6CD38FC1C72620300AF9807 /* LoginSignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginSignupViewController.swift; sourceTree = "<group>"; };
 		A6CD39021C727BAC00AF9807 /* APIKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
+		A6CD39061C72B0E300AF9807 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		A6CD390C1C72B7F200AF9807 /* PushNotificationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +112,8 @@
 				A6CD38D31C71490E00AF9807 /* AppDelegate.swift */,
 				A6CD39021C727BAC00AF9807 /* APIKeys.swift */,
 				A6CD38D51C71490E00AF9807 /* MealViewController.swift */,
+				A6CD390C1C72B7F200AF9807 /* PushNotificationController.swift */,
+				A6CD39061C72B0E300AF9807 /* ProfileViewController.swift */,
 				A6CD38FC1C72620300AF9807 /* LoginSignupViewController.swift */,
 				A6CD38F51C71732000AF9807 /* Meal.swift */,
 				A6CD38F31C7159B200AF9807 /* RatingControl.swift */,
@@ -265,8 +271,10 @@
 				A6CD38D61C71490E00AF9807 /* MealViewController.swift in Sources */,
 				A6CD38FD1C72620300AF9807 /* LoginSignupViewController.swift in Sources */,
 				A6CD38F41C7159B200AF9807 /* RatingControl.swift in Sources */,
+				A6CD390D1C72B7F200AF9807 /* PushNotificationController.swift in Sources */,
 				A6CD38D41C71490E00AF9807 /* AppDelegate.swift in Sources */,
 				A6CD38FB1C7220D800AF9807 /* MealTableViewController.swift in Sources */,
+				A6CD39071C72B0E300AF9807 /* ProfileViewController.swift in Sources */,
 				A6CD39031C727BAC00AF9807 /* APIKeys.swift in Sources */,
 				A6CD38F91C721D0400AF9807 /* MealTableViewCell.swift in Sources */,
 			);

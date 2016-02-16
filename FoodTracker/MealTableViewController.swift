@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class MealTableViewController: UITableViewController {
     
@@ -17,6 +18,8 @@ class MealTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+
+        
         // Use the edit button item provided by the table view controller.
         navigationItem.leftBarButtonItem = editButtonItem()
         
@@ -26,6 +29,17 @@ class MealTableViewController: UITableViewController {
         } else {
             // Load the sample data.
             loadSampleMeals()
+        }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        let user = PFUser .currentUser()
+
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let signup =  storyBoard .instantiateViewControllerWithIdentifier("LoginSignupViewController")
+        
+        if (user == nil) {
+            presentViewController(signup, animated: true, completion: nil)
         }
     }
     

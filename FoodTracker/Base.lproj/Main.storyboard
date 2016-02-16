@@ -7,6 +7,24 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--Profile View Controller-->
+        <scene sceneID="RF5-Mb-hpf">
+            <objects>
+                <viewController id="Lmk-xW-hij" customClass="ProfileViewController" customModule="FoodTracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="DGC-QS-OU9"/>
+                        <viewControllerLayoutGuide type="bottom" id="PZo-ed-F80"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mHo-oT-gFn">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gaf-0B-Ke2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="395" y="-419"/>
+        </scene>
         <!--Your Meals-->
         <scene sceneID="3KJ-6w-ZtN">
             <objects>
@@ -103,11 +121,20 @@
                                     <constraint firstItem="MhW-Cm-Or9" firstAttribute="leading" secondItem="8Lg-59-Bib" secondAttribute="leading" id="Vru-aq-ODR"/>
                                 </constraints>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2wx-fy-pHD">
+                                <rect key="frame" x="277" y="550" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="logoutPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lkn-lN-qIy"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="8Lg-59-Bib" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="16" id="5Ze-cd-UW5"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="2wx-fy-pHD" secondAttribute="bottom" constant="20" id="7zB-eS-dE9"/>
                             <constraint firstAttribute="trailingMargin" secondItem="8Lg-59-Bib" secondAttribute="trailing" id="ITp-m8-uKz"/>
+                            <constraint firstItem="2wx-fy-pHD" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="P7W-SS-Wyr"/>
                             <constraint firstItem="8Lg-59-Bib" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="U57-fv-81G"/>
                         </constraints>
                     </view>
@@ -161,7 +188,7 @@
         <!--Login Signup View Controller-->
         <scene sceneID="7su-c6-MiS">
             <objects>
-                <viewController id="Rem-AR-j8w" customClass="LoginSignupViewController" customModule="FoodTracker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginSignupViewController" id="Rem-AR-j8w" customClass="LoginSignupViewController" customModule="FoodTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="REu-2p-hd4"/>
                         <viewControllerLayoutGuide type="bottom" id="pQ8-c3-wIt"/>
@@ -170,26 +197,70 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hgt-8f-uMv">
-                                <rect key="frame" x="252" y="185" width="97" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hgt-8f-uMv">
+                                <rect key="frame" x="235" y="297" width="130" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="130" id="3E0-Ks-s39"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JQv-34-WSM">
-                                <rect key="frame" x="0.0" y="256" width="600" height="216"/>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JQv-34-WSM">
+                                <rect key="frame" x="180" y="402" width="240" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="7hG-U9-Me2"/>
+                                    <constraint firstAttribute="height" constant="80" id="tga-nt-f9N"/>
+                                </constraints>
                             </pickerView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MMT-SV-yVr">
-                                <rect key="frame" x="180" y="49" width="240" height="128"/>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="MMT-SV-yVr">
+                                <rect key="frame" x="180" y="49" width="240" height="240"/>
                                 <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="7he-if-5pT"/>
+                                    <constraint firstAttribute="width" secondItem="MMT-SV-yVr" secondAttribute="height" multiplier="1:1" id="8AF-II-nXc"/>
+                                </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="sFD-Gi-q3x" appends="YES" id="kmP-8U-elJ"/>
                                 </connections>
                             </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Clp-Cy-u9Z">
+                                <rect key="frame" x="235" y="342" width="130" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5lT-kM-SsI">
+                                <rect key="frame" x="275.5" y="507" width="49" height="30"/>
+                                <state key="normal" title="Submit"/>
+                                <connections>
+                                    <action selector="sumbitButtonPressed:" destination="Rem-AR-j8w" eventType="touchUpInside" id="n1g-te-gRi"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="5lT-kM-SsI" firstAttribute="top" secondItem="JQv-34-WSM" secondAttribute="bottom" constant="25" id="05x-ps-coG"/>
+                            <constraint firstItem="MMT-SV-yVr" firstAttribute="top" secondItem="REu-2p-hd4" secondAttribute="bottom" constant="29" id="3ev-NU-U3C"/>
+                            <constraint firstItem="MMT-SV-yVr" firstAttribute="centerX" secondItem="Nzy-D5-LYg" secondAttribute="centerX" id="9cJ-fT-bID"/>
+                            <constraint firstItem="JQv-34-WSM" firstAttribute="top" secondItem="Clp-Cy-u9Z" secondAttribute="bottom" constant="30" id="Ezg-eo-cLw"/>
+                            <constraint firstItem="Clp-Cy-u9Z" firstAttribute="top" secondItem="hgt-8f-uMv" secondAttribute="bottom" constant="15" id="Gic-sK-rEN"/>
+                            <constraint firstItem="Clp-Cy-u9Z" firstAttribute="width" secondItem="hgt-8f-uMv" secondAttribute="width" id="NFH-9H-cjb"/>
+                            <constraint firstItem="hgt-8f-uMv" firstAttribute="centerX" secondItem="Nzy-D5-LYg" secondAttribute="centerX" id="Nj8-bF-Xeo"/>
+                            <constraint firstItem="5lT-kM-SsI" firstAttribute="centerX" secondItem="Nzy-D5-LYg" secondAttribute="centerX" id="bUh-6F-EIC"/>
+                            <constraint firstItem="hgt-8f-uMv" firstAttribute="top" secondItem="MMT-SV-yVr" secondAttribute="bottom" constant="8" id="coA-qB-b35"/>
+                            <constraint firstItem="Clp-Cy-u9Z" firstAttribute="centerX" secondItem="Nzy-D5-LYg" secondAttribute="centerX" id="h0B-Ox-YlR"/>
+                            <constraint firstItem="JQv-34-WSM" firstAttribute="top" secondItem="hgt-8f-uMv" secondAttribute="bottom" constant="41" id="h9B-8S-bVk"/>
+                            <constraint firstItem="JQv-34-WSM" firstAttribute="centerX" secondItem="Nzy-D5-LYg" secondAttribute="centerX" id="wFB-Em-5tb"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="h9B-8S-bVk"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="imageToUpload" destination="MMT-SV-yVr" id="Qgo-r3-JuD"/>
+                        <outlet property="userPasswordTextField" destination="Clp-Cy-u9Z" id="vjc-oc-Jfw"/>
                         <outlet property="userTypePickerView" destination="JQv-34-WSM" id="lGc-JE-4Dl"/>
                         <outlet property="usernameTextField" destination="hgt-8f-uMv" id="F5B-6c-plf"/>
                     </connections>

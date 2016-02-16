@@ -7,21 +7,29 @@
 //
 
 import UIKit
+import Parse
 
-class LoginSignupViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class LoginSignupViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
     
     // MARK: - Properties
     
     @IBOutlet weak var imageToUpload: UIImageView!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var userTypePickerView: UIPickerView!
+    @IBOutlet weak var userPasswordTextField: UITextField!
     
     var pickerData: [String]  = [String]()
+    var imageFile: PFFile!
+  
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.userTypePickerView.delegate = self
+        self.userTypePickerView.dataSource = self
 
-        // Do any additional setup after loading the view.
+        pickerData = ["Food Critic", "Casual Foodie"]
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,6 +37,20 @@ class LoginSignupViewController: UIViewController, UIImagePickerControllerDelega
         // Dispose of any resources that can be recreated.
     }
     
+    // The number of columns of data
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    // The number of rows of data
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return pickerData.count
+    }
+    
+    // The data to return for the row and component (column) thats being passed in
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return pickerData[row]
+    }
 
     /*
     // MARK: - Navigation
@@ -50,6 +72,12 @@ class LoginSignupViewController: UIViewController, UIImagePickerControllerDelega
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         let selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         imageToUpload.image = selectedImage
+        
+        
+        if let data = UIImageJPEGRepresentation(selectedImage, 0.5){
+            imageFile = PFFile(data: data)
+            imageFile.saveInBackground()
+        }
         dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -62,19 +90,49 @@ class LoginSignupViewController: UIViewController, UIImagePickerControllerDelega
         imagePickerController.delegate = self
         presentViewController(imagePickerController, animated: true, completion: nil)
         
-        
     }
     
+    @IBAction func sumbitButtonPressed(sender: UIButton) {
+    
+        if let username = usernameTextField.text,
+            let password = userPasswordTextField.text {
+                
+                let newUser = PFUser()
+                
+                newUser.username = username
+                newUser.password = password
+                
+                if let imageFile = imageFile {
+                    newUser.setObject(imageFile, forKey: "profilePic")
+                }
+                
+                let selectedRow = userTypePickerView.selectedRowInComponent(0)
+                
+                newUser.setObject(pickerData[selectedRow], forKey: "userType")
+                
+                newUser.signUpInBackgroundWithBlock { (success, error) -> Void in
+                    if success {
+                        print("Created new user")
+                       self.dismissViewControllerAnimated(true, completion: nil)
+                    } else  {
+                        PFUser.logInWithUsernameInBackground(username, password: password, block: { (user, error) -> Void in
+                            if let user = user {
+                                print("logged in")
+                                
+                                if let imageFile = self.imageFile {
+                                    user.setObject(imageFile, forKey: "profilePic")
+                                }
+                                
+                                user.saveInBackground()
+                                
+                                self.dismissViewControllerAnimated(true, completion: nil)
+                            } else {
+                                print("ERROR")
+                            }
+                        })
+                    }
+                }
+        }
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
 

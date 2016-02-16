@@ -16,13 +16,29 @@ import Parse
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
+    var pushNotificationController: PushNotificationController?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
        Parse.setApplicationId(APIKeys.parseAppID, clientKey: APIKeys.parseClientKey)
         
+        self.pushNotificationController = PushNotificationController()
+        
+        if application.respondsToSelector("registerUserNotificationsSettings:") {
+            
+            let types:UIUserNotificationType  = ( .Alert | .Badge | .Sound)
+            let settings:UIUserNotificationSettings = UIUserNotificationSettings(forTypes: types, categories: nil)
+            
+            application.registerUserNotificationSettings(settings)
+            application.registerForRemoteNotifications()
+            
+            
+            
+        } else {
+            application.registerForRemoteNotificationTypes( .Alert | .Badge | .Sound)
+        }
         
         return true
     }
